@@ -1,0 +1,841 @@
+<!-- ============================================================
+     CHURCH PLANT ELIGIBILITY CHECK
+     Squarespace code block (paste HTML + <style> + <script> together)
+
+     Matches the look of nicole-wight-hero.html (dark, purple accent).
+     All rules run in the browser. Nothing is sent anywhere unless you
+     set data-endpoint on the <form> (see README).
+     ============================================================ -->
+
+<section class="ce-wrap" aria-labelledby="ce-title">
+  <div class="ce-inner">
+
+    <p class="ce-eyebrow">Eligibility check</p>
+    <h1 id="ce-title">Is your church plant a fit?</h1>
+    <p class="ce-lede">
+      Answer eight quick questions. You will see right away whether you
+      qualify, whether our team needs to take a closer look, or where to go
+      next.
+    </p>
+
+    <form
+      id="ce-form"
+      class="ce-form"
+      novalidate
+      data-endpoint=""
+      aria-describedby="ce-errors"
+    >
+
+      <div id="ce-errors" class="ce-errors" role="alert" tabindex="-1" hidden></div>
+
+      <!-- Q1 -->
+      <fieldset class="ce-q" data-name="us">
+        <legend><span class="ce-num">1</span> Are you located in the U.S.?</legend>
+        <div class="ce-choices">
+          <label><input type="radio" name="us" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="us" value="no"><span>No</span></label>
+        </div>
+      </fieldset>
+
+      <!-- Q2 -->
+      <fieldset class="ce-q" data-name="plant">
+        <legend><span class="ce-num">2</span> Are you a new church plant?</legend>
+        <div class="ce-choices">
+          <label><input type="radio" name="plant" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="plant" value="no"><span>No</span></label>
+        </div>
+      </fieldset>
+
+      <!-- Q3 -->
+      <fieldset class="ce-q" data-name="timing">
+        <legend>
+          <span class="ce-num">3</span>
+          Are you launching within 6 months, or did you launch within the past 12 months?
+        </legend>
+        <div class="ce-choices">
+          <label><input type="radio" name="timing" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="timing" value="no"><span>No</span></label>
+        </div>
+      </fieldset>
+
+      <!-- Q4 -->
+      <fieldset class="ce-q" data-name="campus">
+        <legend>
+          <span class="ce-num">4</span>
+          Are you an existing church opening a new campus?
+        </legend>
+        <div class="ce-choices">
+          <label><input type="radio" name="campus" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="campus" value="no"><span>No</span></label>
+        </div>
+      </fieldset>
+
+      <!-- Q5 -->
+      <fieldset class="ce-q" data-name="leadership">
+        <legend><span class="ce-num">5</span> Do you have identified leadership?</legend>
+        <div class="ce-choices">
+          <label><input type="radio" name="leadership" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="leadership" value="no"><span>No</span></label>
+        </div>
+      </fieldset>
+
+      <!-- Q6 -->
+      <fieldset class="ce-q" data-name="plan">
+        <legend><span class="ce-num">6</span> Do you have a 24-month financial plan?</legend>
+        <div class="ce-choices">
+          <label><input type="radio" name="plan" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="plan" value="no"><span>No</span></label>
+        </div>
+      </fieldset>
+
+      <!-- Q7 -->
+      <fieldset class="ce-q" data-name="training">
+        <legend>
+          <span class="ce-num">7</span>
+          Are you willing to participate in training and progress reporting?
+        </legend>
+        <div class="ce-choices">
+          <label><input type="radio" name="training" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="training" value="no"><span>No</span></label>
+        </div>
+      </fieldset>
+
+      <!-- Q8 -->
+      <fieldset class="ce-q" data-name="platform">
+        <legend>
+          <span class="ce-num">8</span>
+          Are you currently using another church management or giving platform?
+        </legend>
+        <p class="ce-hint">This will not affect your result. It helps us point you to the right person.</p>
+        <div class="ce-choices">
+          <label><input type="radio" name="platform" value="yes" required><span>Yes</span></label>
+          <label><input type="radio" name="platform" value="no"><span>No</span></label>
+        </div>
+
+        <div class="ce-follow" id="ce-platform-follow" hidden>
+          <label for="ce-platform-name">Which platform? (optional)</label>
+          <input type="text" id="ce-platform-name" name="platformName" autocomplete="off">
+        </div>
+      </fieldset>
+
+      <!-- Contact -->
+      <div class="ce-contact">
+        <h2>Where should we send follow-up? (optional)</h2>
+        <div class="ce-grid">
+          <div>
+            <label for="ce-church">Church name</label>
+            <input type="text" id="ce-church" name="church" autocomplete="organization">
+          </div>
+          <div>
+            <label for="ce-email">Email</label>
+            <input type="email" id="ce-email" name="email" autocomplete="email">
+          </div>
+        </div>
+      </div>
+
+      <div class="ce-actions">
+        <button type="submit" class="ce-btn ce-btn-primary">Check eligibility</button>
+        <button type="reset" class="ce-btn ce-btn-secondary">Start over</button>
+      </div>
+    </form>
+
+    <!-- RESULT -->
+    <div id="ce-result" class="ce-result" tabindex="-1" hidden>
+      <p class="ce-badge" id="ce-badge"></p>
+      <h2 id="ce-result-title"></h2>
+      <p id="ce-result-body"></p>
+      <ul id="ce-reasons" class="ce-reasons" role="list"></ul>
+      <p class="ce-next" id="ce-next"></p>
+    </div>
+
+  </div>
+</section>
+
+
+<style>
+/* =========================================================
+   CHURCH PLANT ELIGIBILITY CHECK
+   ========================================================= */
+
+html,
+body {
+  overflow-x: clip;
+}
+
+.ce-wrap {
+  --ce-white: #f7f7f8;
+  --ce-gray: #b5b2bd;
+  --ce-purple: #a78bfa;
+  --ce-purple-soft: #b99cff;
+  --ce-purple-btn: #6d28d9;
+  --ce-purple-btn-hover: #7c3aed;
+  --ce-border: rgba(255, 255, 255, 0.22);
+  --ce-green: #86efac;
+  --ce-amber: #fcd34d;
+  --ce-red: #fca5a5;
+  --ce-blue: #93c5fd;
+
+  position: relative;
+  display: block;
+
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  padding: clamp(3.5rem, 7vw, 6.5rem) clamp(1.375rem, 5vw, 5rem);
+
+  background:
+    radial-gradient(circle at 90% 10%, rgba(124, 58, 237, 0.20), transparent 34%),
+    linear-gradient(145deg, #08080a 0%, #0c0911 55%, #09070d 100%);
+
+  color: var(--ce-white);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.ce-wrap,
+.ce-wrap *,
+.ce-wrap *::before,
+.ce-wrap *::after {
+  box-sizing: border-box;
+}
+
+.ce-inner {
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+/* Stray-box reset (Squarespace themes inject styles). Zero specificity. */
+.ce-wrap :where(*) {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: none;
+  filter: none;
+  font-family: inherit;
+}
+
+.ce-wrap :where(*)::before,
+.ce-wrap :where(*)::after {
+  content: none !important;
+  display: none !important;
+}
+
+.ce-wrap :where(ul, ol) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Type */
+.ce-eyebrow {
+  margin: 0 0 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ce-purple-soft);
+}
+
+.ce-wrap h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--ce-white);
+}
+
+.ce-lede {
+  max-width: 38rem;
+  margin: 1.25rem 0 0;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--ce-gray);
+}
+
+/* Form */
+.ce-form {
+  margin-top: 2.5rem;
+}
+
+.ce-errors {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--ce-red);
+  border-radius: 3px;
+  color: var(--ce-white);
+}
+
+.ce-errors strong {
+  display: block;
+  margin-bottom: 0.375rem;
+  color: var(--ce-red);
+}
+
+.ce-errors ul {
+  margin: 0;
+}
+
+.ce-errors a {
+  color: #d8caff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ce-q {
+  min-width: 0;
+  margin: 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--ce-border);
+}
+
+.ce-q legend {
+  display: flex;
+  gap: 0.875rem;
+  align-items: baseline;
+  float: left;
+  width: 100%;
+  margin: 0 0 0.875rem;
+  padding: 0;
+  font-size: clamp(1.0625rem, 1.6vw, 1.3125rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ce-white);
+}
+
+.ce-q legend + * {
+  clear: both;
+}
+
+.ce-num {
+  flex: none;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ce-purple);
+}
+
+.ce-q.ce-invalid {
+  border-top-color: var(--ce-red);
+}
+
+.ce-hint {
+  margin: 0 0 0.875rem;
+  font-size: 0.875rem;
+  color: var(--ce-gray);
+}
+
+.ce-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Radio as a pill. The native input stays in the DOM and keyboard-focusable. */
+.ce-choices label {
+  position: relative;
+  display: inline-flex;
+}
+
+.ce-choices input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ce-choices span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 6rem;
+  min-height: 3rem;
+  padding: 0.625rem 1.5rem;
+
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-radius: 3px;
+
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--ce-white);
+
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.ce-choices input:hover + span {
+  border-color: #ffffff;
+}
+
+.ce-choices input:checked + span {
+  background: var(--ce-purple-btn);
+  border-color: var(--ce-purple-btn);
+  color: #ffffff;
+}
+
+.ce-choices input:focus-visible + span {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* Text inputs */
+.ce-wrap label[for] {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #dedbe5;
+}
+
+.ce-wrap input[type="text"],
+.ce-wrap input[type="email"] {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.625rem 0.875rem;
+
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.04);
+
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.ce-wrap input[type="text"]:focus-visible,
+.ce-wrap input[type="email"]:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.ce-follow {
+  max-width: 24rem;
+  margin-top: 1.125rem;
+}
+
+.ce-contact {
+  padding: 1.5rem 0 0;
+  border-top: 1px solid var(--ce-border);
+}
+
+.ce-contact h2 {
+  margin: 0 0 1rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #a5a2ad;
+}
+
+.ce-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/* Buttons */
+.ce-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+  margin-top: 2rem;
+}
+
+.ce-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 3.25rem;
+  padding: 0.875rem 1.5rem;
+
+  border: 2px solid transparent;
+  border-radius: 3px;
+
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+  cursor: pointer;
+
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.ce-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* #6d28d9 with white text = 7.1:1 */
+.ce-btn-primary {
+  background: var(--ce-purple-btn);
+  border-color: var(--ce-purple-btn);
+  color: #ffffff;
+}
+
+.ce-btn-primary:hover {
+  background: var(--ce-purple-btn-hover);
+  border-color: var(--ce-purple-btn-hover);
+}
+
+.ce-btn-secondary {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.65);
+  color: #ffffff;
+}
+
+.ce-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: #ffffff;
+}
+
+.ce-btn:focus-visible,
+.ce-result:focus-visible,
+.ce-errors:focus-visible,
+.ce-errors a:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+}
+
+/* Result */
+.ce-result {
+  margin-top: 3rem;
+  padding: 2rem clamp(1.25rem, 3vw, 2.25rem);
+  border: 2px solid var(--ce-purple);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ce-result[data-tone="eligible"] { border-color: var(--ce-green); }
+.ce-result[data-tone="review"]   { border-color: var(--ce-amber); }
+.ce-result[data-tone="no"]       { border-color: var(--ce-red); }
+.ce-result[data-tone="sales"]    { border-color: var(--ce-blue); }
+
+.ce-badge {
+  margin: 0 0 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ce-result[data-tone="eligible"] .ce-badge { color: var(--ce-green); }
+.ce-result[data-tone="review"] .ce-badge   { color: var(--ce-amber); }
+.ce-result[data-tone="no"] .ce-badge       { color: var(--ce-red); }
+.ce-result[data-tone="sales"] .ce-badge    { color: var(--ce-blue); }
+
+.ce-result h2 {
+  margin: 0;
+  font-size: clamp(1.625rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+
+.ce-result p {
+  margin: 0.875rem 0 0;
+  color: #d0cdd6;
+}
+
+.ce-result p.ce-badge {
+  margin-top: 0;
+}
+
+.ce-reasons {
+  margin-top: 1.25rem !important;
+}
+
+.ce-reasons li {
+  position: relative;
+  padding: 0.5rem 0 0.5rem 1.25rem;
+  border-top: 1px solid var(--ce-border);
+  color: var(--ce-gray);
+}
+
+.ce-reasons li::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  left: 0;
+  top: 1.0625rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ce-purple);
+}
+
+.ce-next {
+  font-weight: 600;
+  color: #ffffff !important;
+}
+
+/* Mobile */
+@media (max-width: 37.5rem) {
+  .ce-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ce-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ce-choices span {
+    min-width: 5.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ce-wrap * {
+    transition: none !important;
+  }
+
+  .ce-btn:hover {
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .ce-btn,
+  .ce-choices span,
+  .ce-result {
+    border-color: ButtonText;
+  }
+
+  .ce-choices input:checked + span {
+    background: Highlight;
+    color: HighlightText;
+  }
+}
+</style>
+
+
+<script>
+(function () {
+  var form = document.getElementById('ce-form');
+  if (!form) return;
+
+  var errBox = document.getElementById('ce-errors');
+  var result = document.getElementById('ce-result');
+  var follow = document.getElementById('ce-platform-follow');
+
+  // Plain-language labels for each question, used in errors and reasons.
+  var LABELS = {
+    us: 'Are you located in the U.S.?',
+    plant: 'Are you a new church plant?',
+    timing: 'Are you launching within 6 months, or did you launch within the past 12 months?',
+    campus: 'Are you an existing church opening a new campus?',
+    leadership: 'Do you have identified leadership?',
+    plan: 'Do you have a 24-month financial plan?',
+    training: 'Are you willing to participate in training and progress reporting?',
+    platform: 'Are you currently using another church management or giving platform?'
+  };
+
+  var ORDER = ['us', 'plant', 'timing', 'campus', 'leadership', 'plan', 'training', 'platform'];
+
+  function val(name) {
+    var el = form.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : '';
+  }
+
+  /*
+   * Decide the outcome. Severity wins, highest first:
+   *   no (not eligible) > sales (standard sales) > review > eligible
+   *
+   * Rules:
+   *  - Not in U.S.                       -> not currently eligible
+   *  - Not willing to train/report       -> not eligible
+   *  - Not a plant and not a new campus  -> standard sales route
+   *  - New campus of existing church     -> review (until policy confirmed)
+   *  - Launch window missed              -> review
+   *  - No identified leadership          -> review
+   *  - No 24-month financial plan        -> review
+   *  - Other platform                    -> never a blocker; routing tag only
+   */
+  function evaluate(a) {
+    var no = [], sales = [], review = [];
+
+    if (a.us === 'no') {
+      no.push('Right now this program is only available to churches located in the U.S.');
+    }
+    if (a.training === 'no') {
+      no.push('Training and progress reporting are required to take part.');
+    }
+
+    if (a.campus === 'yes') {
+      review.push('Existing churches opening a new campus are reviewed individually by our team.');
+    } else if (a.plant === 'no') {
+      sales.push('This program is for new church plants, and your church does not appear to be one.');
+    }
+
+    if (a.timing === 'no') {
+      review.push('Your launch date falls outside our window (launching within 6 months, or launched within the past 12).');
+    }
+    if (a.leadership === 'no') {
+      review.push('We need to talk through who is leading the plant.');
+    }
+    if (a.plan === 'no') {
+      review.push('We need to talk through your 24-month financial plan.');
+    }
+
+    if (no.length) {
+      return {
+        tone: 'no',
+        route: 'not_eligible',
+        badge: 'Not currently eligible',
+        title: 'Not a match right now',
+        body: 'Based on your answers, you do not currently qualify for this program.',
+        reasons: no,
+        next: 'Thank you for your interest. If anything changes, you are welcome to check again.'
+      };
+    }
+    if (sales.length) {
+      return {
+        tone: 'sales',
+        route: 'standard_sales',
+        badge: 'Different path',
+        title: 'Let us connect you with our team',
+        body: 'This program is built for new church plants, so a standard plan is likely the better fit for you.',
+        reasons: sales,
+        next: 'We will point you to the right person to walk through your options.'
+      };
+    }
+    if (review.length) {
+      return {
+        tone: 'review',
+        route: 'needs_review',
+        badge: 'Needs review',
+        title: 'Our team will take a closer look',
+        body: 'You may well be a fit. A few answers need a conversation before we can confirm.',
+        reasons: review,
+        next: 'Someone from our team will follow up with you.'
+      };
+    }
+    return {
+      tone: 'eligible',
+      route: 'eligible',
+      badge: 'Eligible',
+      title: 'Your church plant looks like a great fit',
+      body: 'Based on your answers, you meet the requirements for this program.',
+      reasons: [],
+      next: 'Next step: our team will reach out to get you started.'
+    };
+  }
+
+  function showErrors(missing) {
+    var html = '<strong>Please answer ' + (missing.length === 1 ? 'this question' : 'these questions') + ':</strong><ul role="list">';
+    missing.forEach(function (n) {
+      html += '<li><a href="#" data-jump="' + n + '">' + LABELS[n] + '</a></li>';
+    });
+    html += '</ul>';
+    errBox.innerHTML = html;
+    errBox.hidden = false;
+    errBox.focus();
+  }
+
+  function clearErrors() {
+    errBox.hidden = true;
+    errBox.innerHTML = '';
+    Array.prototype.forEach.call(form.querySelectorAll('.ce-q'), function (q) {
+      q.classList.remove('ce-invalid');
+    });
+  }
+
+  function render(r) {
+    result.setAttribute('data-tone', r.tone);
+    document.getElementById('ce-badge').textContent = r.badge;
+    document.getElementById('ce-result-title').textContent = r.title;
+    document.getElementById('ce-result-body').textContent = r.body;
+    document.getElementById('ce-next').textContent = r.next;
+
+    var list = document.getElementById('ce-reasons');
+    list.innerHTML = '';
+    r.reasons.forEach(function (t) {
+      var li = document.createElement('li');
+      li.textContent = t;
+      list.appendChild(li);
+    });
+    list.hidden = !r.reasons.length;
+
+    result.hidden = false;
+    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    result.focus({ preventScroll: true });
+  }
+
+  // Show the optional platform-name field only when relevant.
+  form.addEventListener('change', function (e) {
+    if (e.target.name === 'platform') {
+      follow.hidden = e.target.value !== 'yes';
+    }
+    var q = e.target.closest && e.target.closest('.ce-q');
+    if (q) q.classList.remove('ce-invalid');
+  });
+
+  // Jump from an error to its question.
+  errBox.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-jump]');
+    if (!a) return;
+    e.preventDefault();
+    var first = form.querySelector('input[name="' + a.getAttribute('data-jump') + '"]');
+    if (first) first.focus();
+  });
+
+  form.addEventListener('reset', function () {
+    follow.hidden = true;
+    result.hidden = true;
+    clearErrors();
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearErrors();
+
+    var answers = {};
+    var missing = [];
+    ORDER.forEach(function (n) {
+      answers[n] = val(n);
+      if (!answers[n]) {
+        missing.push(n);
+        form.querySelector('.ce-q[data-name="' + n + '"]').classList.add('ce-invalid');
+      }
+    });
+
+    if (missing.length) {
+      result.hidden = true;
+      showErrors(missing);
+      return;
+    }
+
+    var r = evaluate(answers);
+    render(r);
+
+    // Optional: send to your own endpoint (CRM, Zapier, Formspree, etc.).
+    var endpoint = form.getAttribute('data-endpoint');
+    if (endpoint) {
+      var payload = {
+        answers: answers,
+        outcome: r.route,
+        // Competitive routing signal for sales. Never affects the outcome.
+        competitivePlatform: answers.platform === 'yes'
+          ? (document.getElementById('ce-platform-name').value || 'unspecified')
+          : null,
+        church: document.getElementById('ce-church').value,
+        email: document.getElementById('ce-email').value
+      };
+      try {
+        fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) { /* result is already shown; do not block the visitor */ }
+    }
+  });
+})();
+</script>
